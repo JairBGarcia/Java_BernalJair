@@ -16,6 +16,7 @@ public class Dia1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Camper> campers = new ArrayList<>();
+        List<Trainers> trainer = new ArrayList<>();
         List<Rutas> rutas = new ArrayList<>();
         List<AreaEntreno> areasEntrenamiento = new ArrayList<>();
         Coordinadores coordinador = new Coordinadores();
@@ -51,9 +52,13 @@ public class Dia1 {
         while (true) {
             System.out.println("Seleccione una opcion:");
             System.out.println("1. Registrar camper");
-            System.out.println("2. Asignar camper a un area");
-            System.out.println("3. Registrar nota de camper");
-            System.out.println("4. Salir");
+            System.out.println("2. Registrar Trainers");
+            System.out.println("3. Asignar camper a un area");
+            System.out.println("4. Registrar nota de camper");
+            System.out.println("5. Mostrar campers");
+            System.out.println("6. Mostrar Rutas");
+            System.out.println("7. Mostrar Trainer");
+            System.out.println("8. Salir");
 
             int opcion = scanner.nextInt();
             scanner.nextLine();
@@ -82,7 +87,18 @@ public class Dia1 {
                     campers.add(new Camper(id, nombre, apellido, direccion, acudiente, telefono, riesgo, estado));
                     System.out.println("Camper registrado con exito");
                     break;
-                case 2:
+            case 2:
+                System.out.println("Ingrese ID del trainer:");
+                int idTrainer = scanner.nextInt();
+                scanner.nextLine(); 
+                System.out.println("Ingrese nombre del trainer:");
+                String nombreTrainer = scanner.nextLine();
+                System.out.println("Ingrese apellido del trainer:");
+                String apellidoTrainer = scanner.nextLine();
+                trainer.add(new Trainers(idTrainer, nombreTrainer, apellidoTrainer));
+                break;
+
+                case 3:
                     System.out.println("Ingrese ID del camper a asignar:");
                     id = scanner.nextInt();
                     scanner.nextLine(); 
@@ -110,7 +126,7 @@ public class Dia1 {
                         System.out.println("Camper no encontrado");
                     }
                     break;
-                case 3:
+                case 4:
                     System.out.println("Ingrese ID del camper para registrar nota:");
                     id = scanner.nextInt();
                     scanner.nextLine();
@@ -134,7 +150,58 @@ public class Dia1 {
                         System.out.println("Camper no encontrado");
                     }
                     break;
-                case 4:
+                case 5:
+                if (campers.isEmpty()) {
+                    System.out.println("No hay campers registrados.");
+                } else {
+                    System.out.println("Listado de campers:");
+                    for (Camper c : campers) {
+                        System.out.println("ID: " + c.id);
+                        System.out.println("Nombre: " + c.nombre);
+                        System.out.println("Apellido: " + c.apellido);
+                        System.out.println("Dirección: " + c.direccion);
+                        System.out.println("Acudiente: " + c.acudiente);
+                        System.out.println("Teléfono: " + c.telefono);
+                        System.out.println("¿En riesgo?: " + c.riesgo);
+                        System.out.println("Estado: " + c.estado);
+                        System.out.println("---------------------");
+                    }
+                }
+                break;
+                
+                case 6:
+                if (rutas.isEmpty()) {
+                    System.out.println("No hay rutas disponibles.");
+                } else {
+                    System.out.println("Listado de Rutas:");
+                    for (Rutas ruta : rutas) {
+                        System.out.println("Nombre de la ruta: " + ruta.nombre);
+                        for (Modulo modulo : ruta.modulos) {
+                            System.out.println(" - " + modulo.nombre);
+                        }
+
+                        System.out.println("---------------------");
+                    }
+                }
+                break;
+
+
+
+
+                case 7:
+                    if (trainer.isEmpty()) {
+                    System.out.println("No hay Trainers registrados.");
+                } else {
+                    System.out.println("Listado de trainers:");
+                    for (Trainers c : trainer) {
+                        System.out.println("ID: " + c.idtrainer);
+                        System.out.println("Nombre: " + c.nombretrainer);
+                        System.out.println("Apellido: " + c.apellidotrainer);
+                        System.out.println("---------------------");
+                    }
+                }
+                break;
+                case 8:
                     System.out.println("Chau");
                     scanner.close();
                     System.exit(0);
