@@ -8,9 +8,16 @@ package dia1;
  *
  * @author jairb
  */
-public class Trainers extends Roles {
-    public Trainers() {
-        super("trainer");
+public class Trainers {
+    public int idtrainer;
+    public String nombretrainer;
+    public String apellidotrainer;
+
+    public Trainers(int id, String nombre, String apellido) {
+        this.idtrainer = id;
+        this.nombretrainer = nombre;
+        this.apellidotrainer = apellido;
     }
 }
+
 
